@@ -4,16 +4,17 @@ import { toast } from "react-toastify";
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
-    itemsList: localStorage.getItem("itemsList")
-    ? JSON.parse(localStorage.getItem("itemsList"))
+    itemsList: localStorage.getItem("itemList")
+    ? JSON.parse(localStorage.getItem("itemList"))
     : [],
-    totalQuantity: 0,
+    cartTotalQuantity: 0,
+    cartTotalAmount: 0,
   },
   reducers: {
+    //agrega un item del carrito
     addToCart(state, action) {
       const newItem = action.payload
 
-      //check item is already exits
       const existItem = state.itemsList.find((item) => item.id === newItem.id)
 
       if (existItem >= 0) {
@@ -32,10 +33,29 @@ const cartSlice = createSlice({
           autoClose: 1200,
         });
       }
-      localStorage.setItem("itemsList", JSON.stringify(state.itemsList));
+      localStorage.setItem("itemList", JSON.stringify(state.itemsList));
+    },
+    //elimina un item del carrito
+    removeFromCart(state, action) {
+      state.itemsList.map((items) => {
+        if (items.id === action.payload.id) {
+          const nextCartItems = state.itemsList.filter(
+            (item) => item.id !== items.id
+          );
+
+          state.itemsList = nextCartItems;
+
+          toast.error("El producto fue eliminado", {
+            position: "bottom-left",
+            autoClose: 1200,
+          });
+        }
+        localStorage.setItem("itemList", JSON.stringify(state.itemsList));
+        return state;
+      });
     },
   },
 })
 
-export const cartActions = cartSlice.actions
+export const { addToCart, removeFromCart, getTotals, } = cartSlice.actions;
 export default cartSlice

@@ -9,7 +9,7 @@ import Footer from './component/footer/Footer';
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#F3F3F3' }}>
+    <div>
       <ToastContainer />
       <Navbar />
     <Routes> 

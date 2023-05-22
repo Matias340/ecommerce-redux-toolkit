@@ -20,7 +20,8 @@ const Footer = () => {
 const useStyles = makeStyles()((theme) => ({
     footer: {
         backgroundColor: '#0D305A',
-        height: '150px'
+        marginTop: '300px',
+        height: '250px'
       },
   }));
 

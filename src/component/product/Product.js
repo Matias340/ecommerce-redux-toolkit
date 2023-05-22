@@ -30,5 +30,6 @@ const useStyles = makeStyles()((theme) => ({
   root:{
       flexGrow: 1,
       padding: theme.spacing(3),
+      backgroundColor: '#F3F3F3',
   }
 }));

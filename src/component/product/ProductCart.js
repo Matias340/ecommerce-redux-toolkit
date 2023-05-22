@@ -8,7 +8,7 @@ import { AddShoppingCart } from '@mui/icons-material';
 import accounting from 'accounting';
 import { IconButton } from '@mui/material';
 import { useDispatch } from "react-redux"
-import { cartActions } from "../../store/cartSlice"
+import { addToCart } from "../../store/cartSlice"
 import { useNavigate } from "react-router-dom";
 
 export const ProductCart = ({ key, id, name, price, image }) => {
@@ -17,8 +17,8 @@ export const ProductCart = ({ key, id, name, price, image }) => {
   const navigate= useNavigate();
 
 
-  const addToCart = () => {
-    dispatch(cartActions.addToCart({ id, name, price, image }))
+  const handleAddToCart = () => {
+    dispatch(addToCart({ id, name, price, image }))
     navigate("/carrito");
   }
 
@@ -38,7 +38,7 @@ export const ProductCart = ({ key, id, name, price, image }) => {
       <Typography style={{ color: '#000', textAlign: 'center', fontSize: '18px', marginBottom: '10px' }}>{name}</Typography>
       <div style={{ justifyContent: 'space-around', display: 'flex' }}>
       <CardActions disableSpacing >
-        <IconButton onClick={addToCart}>
+        <IconButton onClick={handleAddToCart}>
            <AddShoppingCart fontSize='large' style={{ color: '#0D305A', cursor: 'pointer' }} />
         </IconButton>
       </CardActions>

@@ -6,36 +6,42 @@ import { Button, CardHeader, Typography } from '@mui/material';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import accounting from 'accounting';
+import { removeFromCart } from "../../store/cartSlice"
+import { useDispatch } from "react-redux"
 
 export const CarritoItems = ({ id, name, price, image }) => {
+
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCart({ id, name, price, image }))
+  }
+
   const { classes } = useStyles();
   
   return (
     <>
-      <div className={classes.tarjeta}>
-      <div>
-     <CardMedia
-        className={classes.imagen}
-        image={image}
-      />
-      </div>
-      
-      <div> 
-      <div className={classes.botones}>
-       <div>
-      <Typography className={classes.name}>
+       <div className={classes.contenedor}>
+        <div className={classes.imagen}>
+          <CardMedia
+            className={classes.heightImagen}
+            image={image}
+          />
+          <div className={classes.nombre}>
+          <Typography className={classes.name}>
             {name}
-          </Typography>
-          </div> 
-          <div>   
-          <DeleteIcon style={{ cursor: 'pointer', fontSize: '20px', paddingTop: '8px' }}/>
-          </div> 
+         </Typography>
           </div>  
-          <Typography className={classes.cantidad} variant="subtitle1" color="text.secondary" component="div">
-            cant: <Button style={{ color: '#000' }}><IndeterminateCheckBoxIcon style={{ marginRight: '5px' }}/> 1 <AddBoxIcon style={{ marginLeft: '5px' }}/></Button>
-          </Typography>
-          <CardHeader
-        action={
+        </div>
+        <div className={classes.cantidad}>
+        cant: <Button style={{ color: '#000' }}>
+            <IndeterminateCheckBoxIcon style={{ marginRight: '5px' }}/> 1 <AddBoxIcon style={{ marginLeft: '5px' }}/>
+          </Button>
+        </div>
+
+        <div className={classes.precio}>
+        <CardHeader
+           action={
           <Typography
             className={classes.action}
             variant='h5'
@@ -43,89 +49,51 @@ export const CarritoItems = ({ id, name, price, image }) => {
           >
             {accounting.formatMoney(price, '$')}
           </Typography>
-      }
-      /> 
-      </div>   
-    </div>  
+           }  
+         /> 
+          <div className={classes.eliminar}>
+            <DeleteIcon onClick={handleRemoveFromCart} style={{ cursor: 'pointer', fontSize: '20px' }}/>
+          </div>
+        </div>
+    </div>
     </>
   )
 }
 
 const useStyles = makeStyles()((theme) => ({
+  contenedor: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginLeft: '100px',
+    marginRight: '100px',
+    marginBottom: '20px',
+    borderBottom: '1px solid #000',
+  },
+
+  imagen:{
+    display: 'flex',
+  },
+
+  nombre: {
+    marginLeft: '20px',
+  },
+
+  eliminar: {
+    marginTop: '50px',
+    paddingLeft: '50px'
+  },
+  heightImagen: {
+    width: 125, 
+   height: 128,
+  },
+
+  name: {
+    fontSize: '20px',
+  },
+
   action: {
-    paddingLeft: '520px',
-    paddingTop: '24px',
     fontSize: '18px',
     color: '#000',
-    [theme.breakpoints.down('sm')]:{
-     paddingLeft: '80px',
-     paddingTop: '0px',
-   },
-   [theme.breakpoints.up('md')]:{
-     paddingLeft: '5px',
-     paddingTop: '24px',
-   },
   },
-  imagen: {
-   width: 125, 
-   height: 128,
-   [theme.breakpoints.down('sm')]:{
-     width: 120, 
-     height: 108,
-   },
-  },
-  catidad:{
-   
-   [theme.breakpoints.down('sm')]:{
-     paddingRight: '10px'
-   },
-   [theme.breakpoints.up('md')]:{
-     
-    
-   },
-  },
-  tarjeta: {
-   display: 'flex',  
-   paddingLeft: '20px', 
-   paddingRight: '20px', 
-   paddingTop: '10px', 
-   marginBottom: '40px', 
-   marginLeft: '100px',
-   borderBottom: '1px solid #000', 
-   
-  
-   [theme.breakpoints.down('sm')]:{
-     width: 300,
-     marginLeft: '10px',
-     paddingLeft: '10px', 
-   },
-   [theme.breakpoints.up('sm')]:{
-     width: 705, 
-     marginLeft: '10px',
-   },
-   [theme.breakpoints.up('md')]:{
-     width: 900,
-     marginLeft: '50px',
-     paddingLeft: '10px', 
-     marginBottom: '20px', 
-   }
-  
-  },
-  name: {
-   fontSize: '20px', 
-   paddingRight: '400px',
-   [theme.breakpoints.down('sm')]:{
-     paddingRight: '30px',
-     paddingLeft: '5px'
-   },
-   [theme.breakpoints.up('md')]:{
-     paddingRight: '590px',
-     paddingLeft: '10px',
-     paddingTop: '0px',
-   },
-  },
-  botones: {
-   display: 'flex', 
-   justifyContent: 'space-around',
-  }
+
 }));
