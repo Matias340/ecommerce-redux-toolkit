@@ -8,7 +8,7 @@ const cartSlice = createSlice({
     ? JSON.parse(localStorage.getItem("itemList"))
     : [],
     cartTotalQuantity: 0,
-    cartTotalAmount: 0,
+    cartTotalPrice: 0,
   },
   reducers: {
     //agrega un item del carrito
@@ -19,7 +19,7 @@ const cartSlice = createSlice({
 
       if (existItem >= 0) {
         state.itemsList[existItem] = {
-          ...state.cartItems[existItem],
+          ...state.itemsList[existItem],
           totalQuantity: state.itemsList[existItem].totalQuantity + 1,
         };
         toast.info("Increased product quantity", {
@@ -54,8 +54,71 @@ const cartSlice = createSlice({
         return state;
       });
     },
+
+    decreaseCart(state, action) {
+      const itemIndex = state.itemsList.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (state.itemsList[itemIndex].totalQuantity > 1) {
+        state.itemsList[itemIndex].totalQuantity -= 1;
+        
+      } else if (state.itemsList[itemIndex].totalQuantity === 1) {
+        const nextCartItems = state.itemsList.filter(
+          (item) => item.id !== action.payload.id
+        );
+
+        state.itemsList = nextCartItems;
+
+        toast.error("El producto fue eliminado", {
+          position: "bottom-left",
+          autoClose: 1200,
+        });
+      }
+
+      localStorage.setItem("itemsList", JSON.stringify(state.itemsList));
+    },
+    increaseCart: (state, action) => {
+      //find the item from state
+      const item = state.itemsList.find(
+        (product) => product.id === action.payload.id
+      );
+
+      //if item quantity greater than 1 then increase the quantity by 1
+      if (item.totalQuantity >= 1) {
+        //if not then decrease the quantity
+        state.itemsList = state.itemsList.map((product) =>
+          product.id === action.payload.id
+            ? { ...product, totalQuantity: (item.totalQuantity += 1) }
+            : product
+        );
+      }
+
+      //update the localstorage value
+      localStorage.setItem("itemsList", JSON.stringify(state.itemsList));
+    },
+    getCartTotal(state, action) {
+      let { total, quantity } = state.itemsList.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const itemTotal = price * cartQuantity;
+
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += cartQuantity;
+
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
+      total = parseFloat(total.toFixed(2));
+      state.cartTotalQuantity = quantity;
+      state.cartTotalPrice = total;
+    },
   },
 })
 
-export const { addToCart, removeFromCart, getTotals, } = cartSlice.actions;
+export const { addToCart, removeFromCart, decreaseCart, increaseCart, getCartTotal } = cartSlice.actions;
 export default cartSlice

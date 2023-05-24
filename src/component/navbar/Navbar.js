@@ -12,6 +12,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import { useSelector } from "react-redux";
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -53,7 +54,8 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 const Navbar = () => {
-  const { classes } = useStyles(); 
+  const { classes } = useStyles();
+  const cart = useSelector((state) => state.cart); 
 
   return (
  <div className={classes.root}>
@@ -78,7 +80,7 @@ const Navbar = () => {
              <PersonIcon />
           </Button>
           <IconButton aria-label='show cart items' href='/carrito' color='inherit'>
-             <Badge badgeContent={2} color='secondary'>
+             <Badge badgeContent={cart.itemsList.length} color='secondary'>
                <ShoppingCart fontSize='10px' />
              </Badge>
           </IconButton>

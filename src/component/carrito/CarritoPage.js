@@ -1,16 +1,37 @@
 import React from "react"
-import { CarritoItems } from "./CarritoItems"
 import { useSelector } from "react-redux"
 import { makeStyles } from "tss-react/mui";
 import { Button, CardActions, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CardMedia from '@mui/material/CardMedia';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { CardHeader } from '@mui/material';
+import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import accounting from 'accounting';
+import {decreaseCart, increaseCart, removeFromCart } from "../../store/cartSlice"
+import { useDispatch } from "react-redux"
 import Total from "./Total";
 
 export const CarritoPage = () => {
   const { classes } = useStyles();
-  const cartItems = useSelector((state) => state.cart.itemsList);
+  const cart = useSelector((state) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product))
+  }
+
+  const handleIncreaseCart = (product) => {
+    dispatch(increaseCart(product));
+  };
+
+  const handleDecreaseCart = (product) => {
+    dispatch(decreaseCart(product));
+  };
   
   return (
     <>
@@ -34,8 +55,46 @@ export const CarritoPage = () => {
                 MI CARRITO
                </Typography> 
                
-        {cartItems.map((item) => (
-          <CarritoItems id={item.id} image={item.image} name={item.name} price={item.price} quantity={item.quantity} totalPrice={item.totalPrice} />
+        {cart.itemsList &&
+              cart.itemsList.map((item) => (
+          <div className={classes.contenedor}>
+          <div className={classes.imagen}>
+            <CardMedia
+              className={classes.heightImagen}
+              image={item.image}
+            />
+            <div className={classes.nombre}>
+            <Typography className={classes.name}>
+              {item.name}
+           </Typography>
+            </div>  
+          </div>
+          <div className={classes.cantidad}>
+            cant: 
+          <Button style={{ color: '#000' }}>
+              <IndeterminateCheckBoxIcon onClick={() => handleDecreaseCart(item)} style={{ marginRight: '5px' }}/>
+                  {item.totalQuantity}
+              <AddBoxIcon onClick={() => handleIncreaseCart(item)} style={{ marginLeft: '5px' }}/>
+            </Button>
+          </div>
+  
+          <div className={classes.precio}>
+          <CardHeader
+             action={
+            <Typography
+              className={classes.action}
+              variant='h5'
+              color='textSecondary'
+            >
+              {accounting.formatMoney(item.price, '$')}
+            </Typography>
+             }  
+           /> 
+            <div className={classes.eliminar}>
+              <DeleteIcon onClick={()=>handleRemoveFromCart(item)} style={{ cursor: 'pointer', fontSize: '20px' }}/>
+            </div>
+          </div>
+      </div>
         ))}
         </div>
              <div className={classes.total}>
@@ -87,5 +146,39 @@ const useStyles = makeStyles()((theme) => ({
     display: 'flex',
     justifyContent: 'space-between'
 
-  }
+  },
+  contenedor: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginLeft: '100px',
+    marginRight: '100px',
+    marginBottom: '20px',
+    borderBottom: '1px solid #000',
+  },
+
+  imagen:{
+    display: 'flex',
+  },
+
+  nombre: {
+    marginLeft: '20px',
+  },
+
+  eliminar: {
+    marginTop: '50px',
+    paddingLeft: '50px'
+  },
+  heightImagen: {
+    width: 125, 
+   height: 128,
+  },
+
+  name: {
+    fontSize: '20px',
+  },
+
+  action: {
+    fontSize: '18px',
+    color: '#000',
+  },
 }));

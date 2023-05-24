@@ -9,17 +9,14 @@ import accounting from 'accounting';
 import { IconButton } from '@mui/material';
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../store/cartSlice"
-import { useNavigate } from "react-router-dom";
 
 export const ProductCart = ({ key, id, name, price, image }) => {
 
   const dispatch = useDispatch();
-  const navigate= useNavigate();
 
 
   const handleAddToCart = () => {
     dispatch(addToCart({ id, name, price, image }))
-    navigate("/carrito");
   }
 
   const { classes } = useStyles();
