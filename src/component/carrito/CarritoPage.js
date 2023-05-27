@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { makeStyles } from "tss-react/mui";
 import { Button, CardActions, Typography } from '@mui/material';
@@ -11,7 +11,7 @@ import { CardHeader } from '@mui/material';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import accounting from 'accounting';
-import {decreaseCart, increaseCart, removeFromCart } from "../../store/cartSlice"
+import {decreaseCart, getCartTotal, increaseCart, removeFromCart } from "../../store/cartSlice"
 import { useDispatch } from "react-redux"
 import Total from "./Total";
 
@@ -20,6 +20,10 @@ export const CarritoPage = () => {
   const cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cart, dispatch]);
 
   const handleRemoveFromCart = (product) => {
     dispatch(removeFromCart(product))
@@ -86,7 +90,7 @@ export const CarritoPage = () => {
               variant='h5'
               color='textSecondary'
             >
-              {accounting.formatMoney(item.price, '$')}
+              {accounting.formatMoney(item.price * item.totalQuantity, '$')}
             </Typography>
              }  
            /> 
