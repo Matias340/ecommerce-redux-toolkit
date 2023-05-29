@@ -76,11 +76,11 @@ const Navbar = () => {
             <AccountCircle />
           </div>
           <div className={classes.button}>
-          <Button className={classes.click}>
+          <Button href='/sesion' className={classes.click}>
              <PersonIcon />
           </Button>
           <IconButton aria-label='show cart items' href='/carrito' color='inherit'>
-             <Badge badgeContent={cart.itemsList.length} color='secondary'>
+             <Badge badgeContent={cart.cartItems.length} color='secondary'>
                <ShoppingCart fontSize='10px' />
              </Badge>
           </IconButton>

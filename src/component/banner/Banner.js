@@ -31,13 +31,16 @@ const useStyles = makeStyles()((theme) => ({
        justifyContent: 'space-evenly',
        [theme.breakpoints.down('sm')]: {
         display: 'block',
-        height: '70vh'
+        height: '80vh',
+        paddingLeft: '10px'
       },
       [theme.breakpoints.up('sm')]: {
-        height: '32vh'
+        height: '40vh',
+        paddingLeft: '10px'
       },
       [theme.breakpoints.up('md')]: {
-          height: '55vh'
+          height: '60vh',
+          paddingLeft: '10px'
       }
     },
     image: {

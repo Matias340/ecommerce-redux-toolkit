@@ -74,7 +74,8 @@ const useStyles = makeStyles()((theme) => ({
       '&:hover': {
         transform: 'scale(1.1)',
       },
-      marginBottom: '20px'
+      marginBottom: '20px',
+      marginRight: '40px'
      
   },
   action:{

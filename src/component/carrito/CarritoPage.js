@@ -11,7 +11,13 @@ import { CardHeader } from '@mui/material';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import accounting from 'accounting';
-import {decreaseCart, getCartTotal, increaseCart, removeFromCart } from "../../store/cartSlice"
+import {
+  clearCart,
+  decreaseCart,
+  getTotals,
+  removeFromCart,
+  increaseCart
+} from "../../store/cartSlice";
 import { useDispatch } from "react-redux"
 import Total from "./Total";
 
@@ -22,19 +28,21 @@ export const CarritoPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCartTotal());
+    dispatch(getTotals());
   }, [cart, dispatch]);
-
-  const handleRemoveFromCart = (product) => {
-    dispatch(removeFromCart(product))
-  }
-
-  const handleIncreaseCart = (product) => {
-    dispatch(increaseCart(product));
-  };
 
   const handleDecreaseCart = (product) => {
     dispatch(decreaseCart(product));
+  };
+  const handleRemoveFromCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
+  const handleIncreaseCart = (product) => {
+    dispatch(increaseCart(product));
   };
   
   return (
@@ -59,8 +67,8 @@ export const CarritoPage = () => {
                 MI CARRITO
                </Typography> 
                
-        {cart.itemsList &&
-              cart.itemsList.map((item) => (
+        {cart.cartItems &&
+              cart.cartItems.map((item) => (
           <div className={classes.contenedor}>
           <div className={classes.imagen}>
             <CardMedia
@@ -77,7 +85,7 @@ export const CarritoPage = () => {
             cant: 
           <Button style={{ color: '#000' }}>
               <IndeterminateCheckBoxIcon onClick={() => handleDecreaseCart(item)} style={{ marginRight: '5px' }}/>
-                  {item.totalQuantity}
+                  {item.cartQuantity}
               <AddBoxIcon onClick={() => handleIncreaseCart(item)} style={{ marginLeft: '5px' }}/>
             </Button>
           </div>
@@ -90,7 +98,7 @@ export const CarritoPage = () => {
               variant='h5'
               color='textSecondary'
             >
-              {accounting.formatMoney(item.price * item.totalQuantity, '$')}
+              {accounting.formatMoney(item.price * item.cartQuantity, '$')}
             </Typography>
              }  
            /> 
@@ -102,7 +110,7 @@ export const CarritoPage = () => {
         ))}
         </div>
              <div className={classes.total}>
-               <Button variant="text" className={classes.buttonAbajo}>
+               <Button onClick={() => handleClearCart()} variant="text" className={classes.buttonAbajo}>
                    Vaciar Carrito
                 </Button>     
                <div style={{ paddingRight: '100px' }}>
