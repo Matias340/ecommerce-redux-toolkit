@@ -10,7 +10,7 @@ import { IconButton } from '@mui/material';
 import { useDispatch } from "react-redux"
 import { addToCart } from "../../store/cartSlice"
 
-export const ProductCart = ({ key, id, name, price, image }) => {
+export const PcCart = ({ key, id, name, price, image }) => {
 
   const dispatch = useDispatch();
 
@@ -74,6 +74,7 @@ const useStyles = makeStyles()((theme) => ({
       '&:hover': {
         transform: 'scale(1.1)',
       },
+      marginBottom: '20px',
       marginRight: '40px'
      
   },
@@ -84,7 +85,7 @@ const useStyles = makeStyles()((theme) => ({
   },
   media: {
       marginTop: '10px',
-      height: '30px',
-      paddingTop: '70%',
+      height: '20px',
+      paddingTop: '50%',
   },
 }));

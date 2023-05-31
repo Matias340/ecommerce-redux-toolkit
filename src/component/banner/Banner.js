@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from "tss-react/mui";
 import principal from '../../imagenes/principal.png';
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const Banner = () => {
   const { classes } = useStyles();
@@ -15,8 +15,6 @@ const Banner = () => {
      <div> 
        <Typography className={classes.text}>¡Bienvenido a nuestra tienda web!</Typography>
        <Typography className={classes.subtext}>Aqui encontraras las mejores ofertas en productos de alta calidad.</Typography>
-       <Typography className={classes.subtext}>Todavia no tienes una cuenta?</Typography>    
-       <Button style={{ marginTop: '20px', border: '2px solid #fff', color: '#fff', fontWeight: 'bold', fontSize: '15px' }} variant="outlined">REGISTRATE</Button>
       </div>
      </div>
     </div>

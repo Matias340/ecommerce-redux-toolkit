@@ -181,8 +181,8 @@ const useStyles = makeStyles()((theme) => ({
     paddingLeft: '50px'
   },
   heightImagen: {
-    width: 125, 
-   height: 128,
+    width: 120, 
+   height: 120,
   },
 
   name: {
