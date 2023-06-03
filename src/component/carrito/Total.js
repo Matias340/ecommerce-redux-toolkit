@@ -10,7 +10,8 @@ const Total = () => {
 
   return (
     <div style={{ marginTop: '30px' }}>
-       <Typography style={{ fontSize: '50px' }}>
+
+       <Typography className={classes.precio}>
           Total: ${cart.cartTotalAmount}
        </Typography>
        <Button variant="contained" className={classes.button}>
@@ -26,7 +27,25 @@ const useStyles = makeStyles()((theme) => ({
         fontSize: '25px',
         marginLeft: '50px',
         marginBottom: '20px',
-        marginTop: '20px' 
+        marginTop: '20px',
+        [theme.breakpoints.down('sm')]:{
+         fontSize: '30px',
+         marginLeft: '40px',
+       }, 
+     },
+     precio: {
+      [theme.breakpoints.down('sm')]:{
+         fontSize: '30px',
+         textAlign: 'center'
+       },
+       [theme.breakpoints.up('sm')]:{
+         fontSize: '40px',
+         textAlign: 'center'
+     },
+     [theme.breakpoints.up('md')]:{
+      fontSize: '50px',
+      textAlign: 'center'
+  },
      }
   }));
 

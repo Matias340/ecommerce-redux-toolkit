@@ -9,6 +9,7 @@ import { ProductCart } from "./ProductCart";
 import { AuriCart } from "./AuriCart";
 import { PcCart } from "./PcCart";
 import Banner from '../banner/Banner';
+import Footer from '../footer/Footer';
 
 export const Product = () => {
   const { classes } = useStyles();
@@ -48,6 +49,7 @@ export const Product = () => {
           ))}
       </Grid>
     </div>
+    <Footer />
     </>
   )
 }

@@ -1,35 +1,30 @@
-import pc1 from '../../imagenes/pc1.jpg';
-import pc2 from '../../imagenes/pc2.jpg';
-import pc3 from '../../imagenes/pc3.jpg';
-import pc4 from '../../imagenes/pc4.jpg';
-
 const products = [
     {
       id: 9,
       name: 'Notebook', 
       price: 1500,
-      image: pc1,
+      image: 'https://i.imgur.com/JHuCmzb.jpg',
       quantity: 1,
     },
     {
       id: 10,
       name: 'Notebook', 
       price: 1600,
-      image: pc2,
+      image: 'https://i.imgur.com/wdCoXJC.jpg',
       quantity: 1,
     },
     {
       id: 11,
       name: 'Notebook', 
       price: 1750,
-      image: pc3,
+      image: 'https://i.imgur.com/0tmsc6v.jpg',
       quantity: 1,
     },
     {
       id: 12,
       name: 'Notebook', 
       price: 1800,
-      image: pc4,
+      image: 'https://i.imgur.com/sh3D8Bj.jpg',
       quantity: 1,
     },
   ];

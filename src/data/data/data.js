@@ -1,35 +1,30 @@
-import nike from '../../imagenes/nike.jpeg';
-import nikeBlue from '../../imagenes/nikeBlue.jpg';
-import adidas from '../../imagenes/adidas.jpg';
-import adidasBlancas from '../../imagenes/adidasBlancas.jpg';
-
 const products = [
   {
     id: 1,
     name: 'zapatilla Nike', 
     price: 50,
-    image: nike,
+    image: 'https://i.imgur.com/hLp4RdB.jpg',
     quantity: 1,
   },
   {
     id: 2,
     name: 'zapatilla Nike blue', 
     price: 55,
-    image: nikeBlue,
+    image: 'https://i.imgur.com/lpad4nv.jpg',
     quantity: 1,
   },
   {
     id: 3,
     name: 'zapatilla adidas', 
     price: 60,
-    image: adidas,
+    image: 'https://i.imgur.com/yVCfhe0.jpg',
     quantity: 1,
   },
   {
     id: 4,
     name: 'zapatilla adidas', 
     price: 70,
-    image: adidasBlancas,
+    image: 'https://i.imgur.com/DMDMzbi.jpg',
     quantity: 1,
   },
 ];

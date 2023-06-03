@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from "tss-react/mui";
-import principal from '../../imagenes/principal.png';
 import { Typography } from '@mui/material';
 
 const Banner = () => {
@@ -10,7 +9,7 @@ const Banner = () => {
     <div>
      <div className={classes.banner}>
       <div>
-       <img className={classes.image} src={principal} alt='banner' />
+       <img className={classes.image} src='https://i.imgur.com/a43UBhF.png' alt='banner' />
       </div>
      <div> 
        <Typography className={classes.text}>¡Bienvenido a nuestra tienda web!</Typography>

@@ -5,7 +5,6 @@ import Navbar from './component/navbar/Navbar';
 import { Product } from './component/product/Product';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from './component/footer/Footer';
 
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
       <Route path='/' element={<Product />} />
       <Route path='/carrito' element={<CarritoPage />} />
     </Routes>
-    <Footer />
     </div>
   );
 }

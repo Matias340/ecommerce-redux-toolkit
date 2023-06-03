@@ -1,35 +1,30 @@
-import auri1 from '../../imagenes/auri1.jpg';
-import auri2 from '../../imagenes/auri2.jpg';
-import auri3 from '../../imagenes/auri3.jpg';
-import auri4 from '../../imagenes/auri4.jpg';
-
 const products = [
     {
       id: 5,
       name: 'Auriculares', 
       price: 500,
-      image: auri1,
+      image: 'https://i.imgur.com/oOa5CJT.jpg',
       quantity: 1,
     },
     {
       id: 6,
       name: 'Auriculares', 
       price: 600,
-      image: auri2,
+      image: 'https://i.imgur.com/9zfSnu6.jpg',
       quantity: 1,
     },
     {
       id: 7,
       name: 'Auriculares', 
       price: 750,
-      image: auri3,
+      image: 'https://i.imgur.com/0C90MnU.jpg',
       quantity: 1,
     },
     {
       id: 8,
       name: 'Ariculares', 
       price: 800,
-      image: auri4,
+      image: 'https://i.imgur.com/tlFEQnt.jpg',
       quantity: 1,
     },
   ];

@@ -1,14 +1,11 @@
 import React from 'react'
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { makeStyles } from "tss-react/mui";
 import {ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 import StoreIcon from '@mui/icons-material/Store';
-import PersonIcon from '@mui/icons-material/Person';
 import { useSelector } from "react-redux";
 
 

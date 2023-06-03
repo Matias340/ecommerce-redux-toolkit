@@ -11,6 +11,7 @@ import { CardHeader } from '@mui/material';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import accounting from 'accounting';
+import Footer from "../footer/Footer";
 import {
   clearCart,
   decreaseCart,
@@ -47,14 +48,16 @@ export const CarritoPage = () => {
   
   return (
     <>
-       <div>
+       <div className={classes.iconos}>
+      
             <CardActions style={{ backgroundColor: '#E2E2E2', paddingLeft: '40px' }}>
                <HomeIcon style={{ marginTop: '60px', color: '#838383', fontSize: '18px' }}/> 
                <ArrowForwardIosIcon style={{ marginTop: '60px', fontSize: '12px', color: '#838383' }}/>
                <Typography style={{ marginTop: '60px', marginLeft: '10px', fontSize: '12px', color: '#838383' }}>Carrito</Typography>
-            </CardActions> 
+            </CardActions>    
             </div>
             
+ 
             <div className={classes.tarjetaYtotal}>
             <a href='/' style={{ display: 'flex', justifyContent: 'flex-start', marginLeft: '20px', marginTop: '20px', textDecoration: 'none', width: '180px' }}>
             <ArrowBackIcon style={{ color:'#0D305A', fontSize: '25px', cursor: 'pointer' }} />    
@@ -66,7 +69,7 @@ export const CarritoPage = () => {
                <Typography align='left' className={classes.titulo}>
                 MI CARRITO
                </Typography> 
-               
+   
         {cart.cartItems &&
               cart.cartItems.map((item) => (
           <div className={classes.contenedor}>
@@ -107,8 +110,10 @@ export const CarritoPage = () => {
             </div>
           </div>
       </div>
+      
         ))}
         </div>
+        
              <div className={classes.total}>
                <Button onClick={() => handleClearCart()} variant="text" className={classes.buttonAbajo}>
                    Vaciar Carrito
@@ -116,7 +121,10 @@ export const CarritoPage = () => {
                <div style={{ paddingRight: '100px' }}>
                  <Total />
                </div> 
-            </div>   
+              
+            </div>
+              
+            <Footer /> 
       </div>       
     </>
   )
@@ -130,7 +138,10 @@ const useStyles = makeStyles()((theme) => ({
     backgroundColor: '#fff',
     [theme.breakpoints.up('md')]:{
       display: 'block'
-  },
+    },
+    [theme.breakpoints.down('sm')]:{
+      display: 'block'
+    },
   
   },
   button:{
@@ -152,12 +163,22 @@ const useStyles = makeStyles()((theme) => ({
       [theme.breakpoints.up('md')]:{
           marginLeft: '100px',
           marginBottom: '30px'
-      }
+      },
+      [theme.breakpoints.up('sm')]:{
+        marginLeft: '100px',
+        marginBottom: '30px'
+    },
   },
   total:{
     display: 'flex',
-    justifyContent: 'space-between'
-
+    justifyContent: 'space-between',
+    marginBottom: '295px',
+    [theme.breakpoints.down('sm')]:{
+      display: 'block',
+    },
+    [theme.breakpoints.up('sm')]:{
+      marginBottom: '510px',
+    },
   },
   contenedor: {
     display: 'flex',
@@ -166,6 +187,12 @@ const useStyles = makeStyles()((theme) => ({
     marginRight: '100px',
     marginBottom: '20px',
     borderBottom: '1px solid #000',
+    [theme.breakpoints.down('sm')]:{
+      marginLeft: '0px',
+      marginRight: '0px',
+      marginBottom: '20px', 
+      display: 'block',
+    },
   },
 
   imagen:{
@@ -174,15 +201,26 @@ const useStyles = makeStyles()((theme) => ({
 
   nombre: {
     marginLeft: '20px',
+    [theme.breakpoints.down('sm')]:{
+      marginLeft: '170px',
+    },
   },
 
   eliminar: {
     marginTop: '50px',
-    paddingLeft: '50px'
+    paddingLeft: '50px',
+    [theme.breakpoints.down('sm')]:{
+      paddingLeft: '10px',
+      marginTop: '0px',
+  },
   },
   heightImagen: {
     width: 120, 
-   height: 120,
+    height: 120,
+   [theme.breakpoints.down('sm')]:{
+      width: 100,
+      height: 100,
+  },
   },
 
   name: {
@@ -193,4 +231,13 @@ const useStyles = makeStyles()((theme) => ({
     fontSize: '18px',
     color: '#000',
   },
+
+  cantidad: {
+    [theme.breakpoints.down('sm')]:{
+       marginLeft: '10px',
+       marginTop: '20px'
+  },
+  },
+  
+
 }));

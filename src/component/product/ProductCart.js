@@ -30,16 +30,16 @@ export const ProductCart = ({ key, id, name, price, image }) => {
         image={image}
         
       />
-      
+
       <div>
       <Typography style={{ color: '#000', textAlign: 'center', fontSize: '18px', marginBottom: '10px' }}>{name}</Typography>
+      
       <div style={{ justifyContent: 'space-around', display: 'flex' }}>
       <CardActions disableSpacing >
         <IconButton onClick={handleAddToCart}>
            <AddShoppingCart fontSize='large' style={{ color: '#0D305A', cursor: 'pointer' }} />
         </IconButton>
       </CardActions>
-      
       <CardHeader
         action={
           <Typography
@@ -51,9 +51,11 @@ export const ProductCart = ({ key, id, name, price, image }) => {
           </Typography>
       }
       />
+      
        </div>
       </div>
     </div>
+    
     </>
   )
 }
