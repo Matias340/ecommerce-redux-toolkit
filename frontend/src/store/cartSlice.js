@@ -1,4 +1,3 @@
-
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -29,7 +28,7 @@ const cartSlice = createSlice({
         state.cartItems.push(tempProductItem);
         toast.success("Producto agregado exitosamente", {
           position: "bottom-left",
-          autoClose: 1200
+          autoClose: 1200,
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
@@ -46,14 +45,14 @@ const cartSlice = createSlice({
 
           toast.error("Producto eliminado", {
             position: "bottom-left",
-            autoClose: 1200
+            autoClose: 1200,
           });
         }
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
         return state;
       });
     },
-    
+
     increaseCart: (state, action) => {
       const item = state.cartItems.find(
         (product) => product.id === action.payload.id
@@ -77,19 +76,17 @@ const cartSlice = createSlice({
 
       if (state.cartItems[itemIndex].cartQuantity > 1) {
         state.cartItems[itemIndex].cartQuantity -= 1;
-
-      } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+      } /*else if (state.cartItems[itemIndex].cartQuantity === 1) {
         const nextCartItems = state.cartItems.filter(
           (item) => item.id !== action.payload.id
         );
 
         state.cartItems = nextCartItems;
-
-      }
+      }*/ //esto hace que cuando el esta a 1 en cantidad y se precione otra vez el boton de menos se elimine el producto
 
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
-  
+
     getTotals(state, action) {
       let { total, quantity } = state.cartItems.reduce(
         (cartTotal, cartItem) => {
@@ -114,12 +111,20 @@ const cartSlice = createSlice({
     clearCart(state, action) {
       state.cartItems = [];
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
-      toast.error("carrito vacio", { position: "bottom-left", autoClose: 1200 });
+      toast.error("carrito vacio", {
+        position: "bottom-left",
+        autoClose: 1200,
+      });
     },
-   
   },
 });
- 
 
-export const { addToCart, decreaseCart, removeFromCart, getTotals, clearCart, increaseCart } = cartSlice.actions;
-export default cartSlice
+export const {
+  addToCart,
+  decreaseCart,
+  removeFromCart,
+  getTotals,
+  clearCart,
+  increaseCart,
+} = cartSlice.actions;
+export default cartSlice;
