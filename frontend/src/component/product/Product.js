@@ -1,4 +1,4 @@
-import React from "react"
+/*import React from "react"
 import products from "../../data/data/data"
 import auriProducts from "../../data/data/auri-data"
 import pcProducts from "../../data/data/pc-data"
@@ -60,4 +60,4 @@ const useStyles = makeStyles()((theme) => ({
       padding: theme.spacing(3),
       backgroundColor: '#F3F3F3',
   }
-}));
+}));*/
